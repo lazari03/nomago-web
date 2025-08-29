@@ -11,14 +11,17 @@ const AutomationSection = () => (
         <p className="mb-10 text-lg" style={{ color: ColorTokens.darkGray, lineHeight: 1.7 }}>
           Menaxhoni, monitoroni dhe optimizoni çdo aspekt të biznesit tuaj me lehtësi dhe efikasitet.
         </p>
+        <p className="mb-2 text-base md:text-lg font-medium text-blue">
+          <span className="font-bold">Nomago</span> është platforma e parë e dedikuar për digital nomads në Shqipëri, duke ofruar mjete të avancuara për menaxhimin e jetës dhe punës në lëvizje.
+        </p>
       </div>
-      <div className="flex gap-8 justify-center">
-        <div className="bg-[" style={{ background: ColorTokens.lightBlue, borderRadius: '1.5rem', boxShadow: '0 4px 24px 0 rgba(67,97,238,0.08)' }}>
-          <img src="/file.svg" alt="Automation 1" className="w-28 h-28 object-contain m-6" />
-        </div>
-        <div className="bg-[" style={{ background: ColorTokens.lightBlue, borderRadius: '1.5rem', boxShadow: '0 4px 24px 0 rgba(67,97,238,0.08)' }}>
-          <img src="/window.svg" alt="Automation 2" className="w-28 h-28 object-contain m-6" />
-        </div>
+      <div className="flex justify-center items-center">
+        <img
+          src="/mock.png"
+          alt="Nomago App"
+          style={{ width: '80%', height: 'auto' }}
+          className="object-contain opacity-0 animate-fadein"
+        />
       </div>
     </div>
   </section>

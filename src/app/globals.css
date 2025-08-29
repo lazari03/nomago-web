@@ -2,7 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
+.animate-fadein {
+  animation: fadein 1.2s ease-in forwards;
+}
 
 body {
   @apply bg-white text-black font-sans;

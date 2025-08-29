@@ -22,45 +22,46 @@ const FeaturesSection = () => (
     </div>
   <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-8 pt-12 md:pt-20 z-10">
       <div className="flex-1 flex justify-center items-center mb-10 md:mb-0">
-        <div className="bg-white rounded-3xl shadow-2xl flex items-center justify-center p-8 border border-lightGray">
-          <img
-            src="/window.svg"
-            alt="App Features"
-            className="w-60 h-60 object-contain"
-          />
-        </div>
+        <img
+          src="/logo-body.png"
+          alt="Nomago Logo"
+          className="w-60 h-60 object-contain rounded-[12px]"
+        />
       </div>
       <div className="flex-1 max-w-xl">
         <h2 className="text-4xl md:text-5xl font-extrabold text-darkGray leading-tight mb-6">
-          Zgjidhje <span className="text-blue">360°</span> për biznesin tuaj
+          Platformë moderne për <span className="text-blue">digital nomads</span>
         </h2>
-        <ul className="space-y-4 text-lg text-gray mb-8">
-          <li className="flex items-center gap-3">
-            <span className="text-xl text-purple">⚡</span>
-            Pagesa të shpejta dhe të sigurta
+        <ul className="space-y-4 text-lg mb-8">
+          <li className="flex items-start gap-3">
+            <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
+            Menaxho akomodimin, punën dhe udhëtimet në një vend të vetëm
           </li>
-          <li className="flex items-center gap-3">
-            <span className="text-xl text-purple">🤝</span>
-            Menaxhim i klientëve dhe partnerëve
+          <li className="flex items-start gap-3">
+            <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
+            Pagesa të sigurta dhe të shpejta për shërbime të ndryshme
           </li>
-          <li className="flex items-center gap-3">
-            <span className="text-xl text-purple">📊</span>
-            Raporte të detajuara
+          <li className="flex items-start gap-3">
+            <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
+            Komunitet aktiv dhe mbështetje 24/7
           </li>
-          <li className="flex items-center gap-3">
-            <span className="text-xl text-purple">🔗</span>
-            Integrime të avancuara
+          <li className="flex items-start gap-3">
+            <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
+            Evente, guida dhe resurse për jetën nomade
           </li>
-          <li className="flex items-center gap-3">
-            <span className="text-xl text-purple">🛟</span>
-            Mbështetje 24/7
+          <li className="flex items-start gap-3">
+            <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
+            Integrime të avancuara për produktivitet maksimal
           </li>
         </ul>
-        <button
-          className="px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 bg-purple text-white"
-        >
-          Kërko një demo
-        </button>
+        <a href="#listings" className="inline-block">
+          <button
+            className="px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-white"
+            style={{ background: ColorTokens.purple }}
+          >
+            Shiko listimet
+          </button>
+        </a>
       </div>
     </div>
   </section>
