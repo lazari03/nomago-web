@@ -1,10 +1,8 @@
-import Image from "next/image";
 
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import FeaturesSection from "../components/FeaturesSection";
 
-import PartnersSection from "../components/PartnersSection";
 import AutomationSection from "../components/AutomationSection";
 import NetworkSection from "../components/NetworkSection";
 import ListingsSection from "../components/ListingsSection";
@@ -18,11 +16,11 @@ export default function HomePage() {
       <Navbar />
       <main className="font-sans bg-white">
         <HeroSection />
-  <FeaturesSection />
-  <BusinessAutomationSection />
-  <AutomationSection />
-  <NetworkSection />
-  <ListingsSection />
+        <FeaturesSection />
+        <BusinessAutomationSection />
+        <AutomationSection />
+        <NetworkSection />
+        <ListingsSection />
       </main>
       <Footer />
     </>
