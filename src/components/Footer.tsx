@@ -1,5 +1,5 @@
 
-import Colors, { ColorTokens } from '../theme/colors';
+import { ColorTokens } from '../theme/colors';
 
 const Footer = () => (
   <footer

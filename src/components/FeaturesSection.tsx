@@ -1,4 +1,5 @@
-import Colors, { ColorTokens } from "../theme/colors";
+import { ColorTokens } from "../theme/colors";
+import Image from 'next/image';
 
 
 const FeaturesSection = () => (
@@ -22,10 +23,13 @@ const FeaturesSection = () => (
     </div>
   <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-8 pt-12 md:pt-20 z-10">
       <div className="flex-1 flex justify-center items-center mb-10 md:mb-0">
-        <img
+        <Image
           src="/logo-body.png"
           alt="Nomago Logo"
+          width={240}
+          height={240}
           className="w-60 h-60 object-contain rounded-[12px]"
+          priority
         />
       </div>
       <div className="flex-1 max-w-xl">

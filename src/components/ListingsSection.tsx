@@ -1,6 +1,7 @@
 'use client'
 
 import React from "react";
+import Image from 'next/image';
 import Link from "next/link";
 
 interface Listing {
@@ -51,7 +52,7 @@ const mockListings: Listing[] = [
 
 const ListingCell = ({ id, image, title, subtitle }: Listing) => (
   <Link href={`/listings/${id}`} className="bg-white rounded-2xl shadow-md overflow-hidden w-64 min-w-[16rem] flex-shrink-0 hover:scale-105 transition-transform">
-    <img src={image} alt={title} className="w-full h-40 object-cover" />
+    <Image src={image} alt={title} width={256} height={160} className="w-full h-40 object-cover" priority />
     <div className="p-4">
       <h4 className="font-bold text-lg mb-1 text-darkGray truncate">{title}</h4>
       <p className="text-gray text-sm truncate">{subtitle}</p>

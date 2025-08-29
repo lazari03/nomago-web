@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "./Navbar";
-import Colors, { ColorTokens } from "../theme/colors";
+import { ColorTokens } from "../theme/colors";
+import Image from 'next/image';
 
 
 interface ListingDetailProps {
@@ -43,7 +44,7 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ image, title, subtitle, d
         </button>
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-lightGray">
           {/* Featured Image */}
-          <img src={image} alt={title} className="w-full h-72 object-cover" />
+          <Image src={image} alt={title} width={800} height={288} className="w-full h-72 object-cover" priority />
           <div className="p-8">
             <h1 className="text-3xl md:text-4xl font-extrabold text-darkGray mb-2">{title}</h1>
             <h2 className="text-lg text-blue font-semibold mb-4">{subtitle}</h2>
@@ -55,10 +56,12 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ image, title, subtitle, d
             {images.length > 0 && (
               <div className="w-full flex overflow-x-auto gap-2 p-2 mb-6">
                 {images.map((img, idx) => (
-                  <img
+                  <Image
                     key={idx}
                     src={img}
                     alt={title}
+                    width={256}
+                    height={160}
                     className="h-40 w-64 object-cover rounded-xl flex-shrink-0 border border-lightGray cursor-pointer hover:opacity-80 transition"
                     onClick={() => openLightbox(idx)}
                   />
@@ -88,7 +91,14 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ image, title, subtitle, d
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
           <button className="absolute top-6 right-8 text-white text-3xl font-bold" onClick={closeLightbox}>&times;</button>
           <button className="absolute left-4 md:left-16 text-white text-4xl font-bold px-2 py-1" onClick={prevImg}>&#8592;</button>
-          <img src={images[lightboxIdx]} alt="Gallery" className="max-h-[80vh] max-w-[90vw] rounded-2xl shadow-2xl border-4 border-white" />
+          <Image
+            src={images[lightboxIdx]}
+            alt="Gallery"
+            width={900}
+            height={800}
+            className="max-h-[80vh] max-w-[90vw] rounded-2xl shadow-2xl border-4 border-white"
+            priority
+          />
           <button className="absolute right-4 md:right-16 text-white text-4xl font-bold px-2 py-1" onClick={nextImg}>&#8594;</button>
         </div>
       )}

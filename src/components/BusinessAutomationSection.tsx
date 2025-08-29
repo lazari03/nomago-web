@@ -1,5 +1,6 @@
 
-import Colors, { ColorTokens } from '../theme/colors';
+import { ColorTokens } from '../theme/colors';
+import Image from 'next/image';
 
 const BusinessAutomationSection = () => (
   <section
@@ -16,7 +17,13 @@ const BusinessAutomationSection = () => (
     </div>
     <div className="flex-1 flex flex-col md:flex-row gap-8 justify-center items-center">
       <div className="relative bg-white rounded-3xl overflow-hidden shadow-lg w-80 h-96 flex flex-col items-center justify-end">
-        <img src="/automation-pos.jpg" alt="POS" className="absolute top-0 left-0 w-full h-full object-cover" />
+        <Image
+          src="/automation-pos.jpg"
+          alt="POS"
+          fill
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          priority
+        />
         <div className="relative z-10 w-full flex justify-center pb-6">
           <button
             className="font-bold px-8 py-3 rounded-xl text-lg flex items-center gap-2 shadow-md"
@@ -29,7 +36,13 @@ const BusinessAutomationSection = () => (
       </div>
       <div className="relative rounded-3xl overflow-hidden shadow-lg w-80 h-96 flex flex-col items-center justify-end"
         style={{ background: `linear-gradient(135deg, ${ColorTokens.lightBlue}, ${ColorTokens.purple})` }}>
-        <img src="/automation-link.jpg" alt="Pagesa me link" className="absolute top-0 left-0 w-full h-full object-cover opacity-80" />
+        <Image
+          src="/automation-link.jpg"
+          alt="Pagesa me link"
+          fill
+          className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
+          priority
+        />
         <div className="relative z-10 w-full flex justify-center pb-6">
           <button
             className="font-bold px-8 py-3 rounded-xl text-lg flex items-center gap-2 shadow-md"

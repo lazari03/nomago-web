@@ -1,5 +1,6 @@
 import React from 'react';
-import Colors, { ColorTokens } from "../theme/colors";
+import { ColorTokens } from "../theme/colors";
+import Image from 'next/image';
 
 
 const HeroSection = () => (
@@ -14,12 +15,23 @@ const HeroSection = () => (
         </h1>
       <p className="text-lg text-gray mb-6 max-w-md">Find your next home, coworking spot, or adventure with the platform built for digital nomads.</p>
       <div className="flex gap-4 mb-8">
-        <a href="#" className="inline-block"><img src="/appstore.png" alt="App Store" className="h-12" /></a>
-        <a href="#" className="inline-block"><img src="/playstore.png" alt="Google Play" className="h-12" /></a>
+        <a href="#" className="inline-block">
+          <Image src="/appstore.png" alt="App Store" width={120} height={40} className="h-12 w-auto" priority />
+        </a>
+        <a href="#" className="inline-block">
+          <Image src="/playstore.png" alt="Google Play" width={120} height={40} className="h-12 w-auto" priority />
+        </a>
       </div>
     </div>
     <div className="flex-1 flex justify-center items-center relative mt-10 md:mt-0 z-10">
-  <img src="/35.jpg" alt="App Screenshot" className="w-full h-[55vh] max-w-[650px] object-cover shadow-2xl rounded-3xl border border-lightGray bg-white" />
+      <Image
+        src="/35.jpg"
+        alt="App Screenshot"
+        width={650}
+        height={400}
+        className="w-full h-[55vh] max-w-[650px] object-cover shadow-2xl rounded-3xl border border-lightGray bg-white"
+        priority
+      />
     </div>
     <div className="absolute left-0 right-0 top-0 min-w-full h-[340px] md:h-[560px] pointer-events-none z-0 overflow-hidden">
       <svg width="100%" height="100%" viewBox="0 0 1440 560" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full block" style={{ display: 'block' }}>

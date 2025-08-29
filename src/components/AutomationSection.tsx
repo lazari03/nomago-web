@@ -1,5 +1,6 @@
 
-import Colors, { ColorTokens } from '../theme/colors';
+import { ColorTokens } from '../theme/colors';
+import Image from 'next/image';
 
 const AutomationSection = () => (
   <section className="py-24 px-4" style={{ background: ColorTokens.white }}>
@@ -16,11 +17,14 @@ const AutomationSection = () => (
         </p>
       </div>
       <div className="flex justify-center items-center">
-        <img
+        <Image
           src="/mock.png"
           alt="Nomago App"
+          width={800}
+          height={600}
           style={{ width: '80%', height: 'auto' }}
           className="object-contain opacity-0 animate-fadein"
+          priority
         />
       </div>
     </div>
