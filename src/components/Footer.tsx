@@ -9,7 +9,7 @@ const Footer = () => (
     <div className="flex-1 min-w-[250px]">
       <div className="flex items-center gap-2 mb-4">
         <div className="w-8 h-8 rounded-full bg-purple flex items-center justify-center text-white font-bold text-lg">F</div>
-  <span className="font-bold text-2xl" style={{ color: ColorTokens.white }}>FinmiGo</span>
+  <span className="font-bold text-2xl" style={{ color: ColorTokens.white }}>Nomago</span>
       </div>
   <p className="text-base mb-6 max-w-xs" style={{ color: ColorTokens.white }}>
         Effortlessly manage your spending, saving, and investing—all in one place.

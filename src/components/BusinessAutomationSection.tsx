@@ -4,7 +4,7 @@ import Colors, { ColorTokens } from '../theme/colors';
 const BusinessAutomationSection = () => (
   <section
     className="py-20 px-4 md:px-16 flex flex-col md:flex-row items-center gap-12"
-    style={{ background: ColorTokens.darkGray, color: ColorTokens.white }}
+    style={{ background: ColorTokens.purple, color: ColorTokens.white }}
   >
     <div className="flex-1 max-w-2xl">
       <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">

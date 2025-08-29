@@ -20,7 +20,6 @@ export default function HomePage() {
         <HeroSection />
   <FeaturesSection />
   <BusinessAutomationSection />
-  <PartnersSection />
   <AutomationSection />
   <NetworkSection />
   <ListingsSection />

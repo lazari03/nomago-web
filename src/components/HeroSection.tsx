@@ -3,7 +3,7 @@ import Colors, { ColorTokens } from "../theme/colors";
 
 
 const HeroSection = () => (
-  <section className="relative flex flex-col md:flex-row items-center justify-between px-8 pt-16 pb-0 bg-white min-h-[70vh] overflow-hidden">
+  <section className="relative flex flex-col md:flex-row items-center justify-between px-8 pt-16 pb-0 bg-white min-h-[70vh] overflow-hidden" style={{ marginBottom: 0 }}>
     <div className="flex-1 max-w-xl z-10">
       <div className="mb-4">
         <span className="inline-block bg-lightBlue text-blue text-xs font-semibold px-3 py-1 rounded-full border border-blue mb-2">Your Travel Companion</span>
@@ -23,7 +23,7 @@ const HeroSection = () => (
     </div>
     <div className="absolute left-0 right-0 top-0 min-w-full h-[340px] md:h-[560px] pointer-events-none z-0 overflow-hidden">
       <svg width="100%" height="100%" viewBox="0 0 1440 560" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full block" style={{ display: 'block' }}>
-        <path d="M0 160C360 320 1080 0 1440 160V560H0V160Z" fill={`${ColorTokens.lightPurple || '#F3EFFF'}`} fillOpacity="0.3"/>
+  <path d="M0 160C360 320 1080 0 1440 160V560H0V160Z" fill={ColorTokens.purple} fillOpacity="0.12"/>
       </svg>
     </div>
   </section>

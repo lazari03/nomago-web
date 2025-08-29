@@ -4,6 +4,7 @@ import Colors, { ColorTokens } from "../theme/colors";
 const FeaturesSection = () => (
   <section
     className="relative w-full bg-white overflow-hidden pt-0 pb-12"
+    style={{ marginTop: 0 }}
   >
     {/* Flipped SVG background at the top */}
     <div className="absolute top-0 left-0 right-0 min-w-full h-[140px] md:h-[220px] pointer-events-none z-0 overflow-hidden">
@@ -16,7 +17,7 @@ const FeaturesSection = () => (
         className="w-full h-full block"
         style={{ display: 'block' }}
       >
-  <path d="M0 160C360 0 1080 320 1440 160V0H0V160Z" fill={ColorTokens.lightPurple || '#F3EFFF'} fillOpacity="0.3"/>
+  <path d="M0 160C360 0 1080 320 1440 160V0H0V160Z" fill={ColorTokens.purple} fillOpacity="0.12"/>
       </svg>
     </div>
   <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-8 pt-12 md:pt-20 z-10">
