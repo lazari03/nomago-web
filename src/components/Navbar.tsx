@@ -1,0 +1,46 @@
+
+"use client";
+import React, { useState } from 'react';
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  return (
+    <nav className="w-full flex items-center justify-between py-3 px-4 md:px-8 bg-white border-b border-gray-100 shadow-sm">
+      <div className="flex items-center gap-2">
+        <div className="w-7 h-7 rounded-full bg-purple flex items-center justify-center text-white font-bold text-base">F</div>
+        <span className="font-bold text-lg text-darkGray tracking-tight">FinmiGo</span>
+      </div>
+      <ul className="hidden md:flex gap-5 text-darkGray font-medium text-sm">
+        <li><a href="#features" className="hover:text-blue transition-colors">Features</a></li>
+        <li><a href="#pricing" className="hover:text-blue transition-colors">Pricing</a></li>
+        <li><a href="#faq" className="hover:text-blue transition-colors">FAQ</a></li>
+        <li><a href="#blogs" className="hover:text-blue transition-colors">Blogs</a></li>
+        <li><a href="#waitlist" className="hover:text-blue transition-colors">Waitlist</a></li>
+      </ul>
+      <a href="#get-app" className="ml-2 bg-purple text-white px-4 py-1.5 rounded-md font-semibold shadow-sm hover:bg-darkPurple transition hidden md:block text-sm">Get the App</a>
+      {/* Mobile menu button */}
+      <button
+        className="md:hidden ml-2 p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple"
+        aria-label="Open menu"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      {/* Mobile menu dropdown */}
+      {menuOpen && (
+        <div className="absolute top-16 right-4 bg-white border border-gray-100 rounded-lg shadow-lg p-4 z-50 flex flex-col gap-3 md:hidden animate-fade-in">
+          <a href="#features" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>Features</a>
+          <a href="#pricing" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>Pricing</a>
+          <a href="#faq" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>FAQ</a>
+          <a href="#blogs" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>Blogs</a>
+          <a href="#waitlist" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>Waitlist</a>
+          <a href="#get-app" className="bg-purple text-white px-4 py-2 rounded-md font-semibold shadow-sm hover:bg-darkPurple transition text-center mt-2" onClick={() => setMenuOpen(false)}>Get the App</a>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
