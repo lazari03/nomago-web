@@ -39,23 +39,23 @@ const FeaturesSection = () => (
         <ul className="space-y-4 text-lg mb-8">
           <li className="flex items-start gap-3">
             <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
-            Menaxho akomodimin, punën dhe udhëtimet në një vend të vetëm
+            Rezervo akomodime dhe hapësira pune në pak klikime
           </li>
           <li className="flex items-start gap-3">
             <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
-            Pagesa të sigurta dhe të shpejta për shërbime të ndryshme
+            Shfleto listime të verifikuara për çdo nevojë nomade
           </li>
           <li className="flex items-start gap-3">
             <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
-            Komunitet aktiv dhe mbështetje 24/7
+            Mbështetje dhe asistencë 24/7 për çdo udhëtim
+          </li>
+          <li className="flex items-start gap-3">
+            <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
+            Komunitet aktiv për ndarje eksperiencash dhe bashkëpunim
           </li>
           <li className="flex items-start gap-3">
             <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
             Evente, guida dhe resurse për jetën nomade
-          </li>
-          <li className="flex items-start gap-3">
-            <span style={{ background: ColorTokens.purple }} className="w-3 h-3 mt-2 rounded-full inline-block"></span>
-            Integrime të avancuara për produktivitet maksimal
           </li>
         </ul>
         <a href="#listings" className="inline-block">

@@ -7,13 +7,13 @@ const AutomationSection = () => (
     <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
       <div>
         <h3 className="text-3xl md:text-4xl font-extrabold mb-6" style={{ color: ColorTokens.blue, letterSpacing: '-0.02em' }}>
-          Automatizoni të gjitha proceset e biznesit tuaj në një platformë të vetme
+          Nomago: Platforma për Digital Nomads
         </h3>
-        <p className="mb-10 text-lg" style={{ color: ColorTokens.darkGray, lineHeight: 1.7 }}>
-          Menaxhoni, monitoroni dhe optimizoni çdo aspekt të biznesit tuaj me lehtësi dhe efikasitet.
+        <p className="mb-6 text-lg" style={{ color: ColorTokens.darkGray, lineHeight: 1.7 }}>
+          Nomago është aplikacioni i parë në Shqipëri i dedikuar për digital nomads. Me Nomago, mund të gjesh akomodim, hapësira pune, evente dhe komunitet, të gjitha në një vend të vetëm. Platforma ndihmon në organizimin e jetës nomade, lidhjen me profesionistë të tjerë dhe zbulimin e mundësive të reja për punë dhe eksperienca.
         </p>
         <p className="mb-2 text-base md:text-lg font-medium text-blue">
-          <span className="font-bold">Nomago</span> është platforma e parë e dedikuar për digital nomads në Shqipëri, duke ofruar mjete të avancuara për menaxhimin e jetës dhe punës në lëvizje.
+          Shfrytëzo avantazhet e Nomago për të jetuar dhe punuar lirshëm, kudo që ndodhesh.
         </p>
       </div>
       <div className="flex justify-center items-center">

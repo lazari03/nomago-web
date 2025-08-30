@@ -9,10 +9,10 @@ const BusinessAutomationSection = () => (
   >
     <div className="flex-1 max-w-2xl">
       <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-        Automatizoni të gjitha proceset e biznesit tuaj në një platformë të vetme
+        Jetë Nomade, Mundësi të Pafundme
       </h2>
       <p className="text-lg mb-8" style={{ color: ColorTokens.lightGray }}>
-        Një mënyrë unike, e thjeshtë dhe efikase për të pranuar pagesa me kartë, kod QR ose link. Thjeshtim dhe automatizim i kalimit të pagave, pagesës së faturave dhe abonimeve të ndryshme. Kartë debiti me komision zero për blerje online dhe në dyqane fizike, në të gjithë botën.
+        Nomago është partneri juaj për rritje personale dhe profesionale. Zbuloni mundësi të reja, bashkëpunoni me talente të ndryshme dhe përfitoni nga një platformë që ju mbështet në çdo hap të udhëtimit tuaj nomad. Çdo funksionalitet është ndërtuar për të fuqizuar stilin tuaj të jetesës digjitale.
       </p>
     </div>
     <div className="flex-1 flex flex-col md:flex-row gap-8 justify-center items-center">

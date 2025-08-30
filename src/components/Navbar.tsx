@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ColorTokens } from '../theme/colors';
+import { NAVBAR_MENU } from './navbarMenu';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,11 +14,15 @@ const Navbar = () => {
         <span className="font-bold text-lg text-darkGray tracking-tight">Nomago</span>
       </div>
       <ul className="hidden md:flex gap-5 text-darkGray font-medium text-sm">
-        <li><Link href="/" className="hover:text-blue transition-colors">Home</Link></li>
-        <li><a href="#about" className="hover:text-blue transition-colors">About us</a></li>
-        <li><Link href="/listings" className="hover:text-blue transition-colors">Listings</Link></li>
-        <li><a href="#blog" className="hover:text-blue transition-colors">Blog</a></li>
-        <li><a href="#contact" className="hover:text-blue transition-colors">Contact</a></li>
+        {NAVBAR_MENU.map(({ label, href, isLink }) => (
+          <li key={label}>
+            {isLink ? (
+              <Link href={href} className="hover:text-blue transition-colors">{label}</Link>
+            ) : (
+              <a href={href} className="hover:text-blue transition-colors">{label}</a>
+            )}
+          </li>
+        ))}
       </ul>
       <a
         href="#get-app"
@@ -39,11 +44,13 @@ const Navbar = () => {
       {/* Mobile menu dropdown */}
       {menuOpen && (
         <div className="absolute top-16 right-4 bg-white border border-gray-100 rounded-lg shadow-lg p-4 z-50 flex flex-col gap-3 md:hidden animate-fade-in">
-          <Link href="/" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>Home</Link>
-          <a href="#about" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>About us</a>
-          <Link href="/listings" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>Listings</Link>
-          <a href="#blog" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>Blog</a>
-          <a href="#contact" className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>Contact</a>
+          {NAVBAR_MENU.map(({ label, href, isLink }) => (
+            isLink ? (
+              <Link key={label} href={href} className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>{label}</Link>
+            ) : (
+              <a key={label} href={href} className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>{label}</a>
+            )
+          ))}
           <a
             href="#get-app"
             className="text-white px-4 py-2 rounded-md font-semibold shadow-sm transition text-center mt-2"

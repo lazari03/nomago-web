@@ -63,7 +63,7 @@ const ListingCell = ({ id, image, title, subtitle }: Listing) => (
 const ListingsSection = () => (
   <section className="py-20 px-4 bg-white">
     <div className="max-w-6xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-darkGray text-center">Featured Listings</h2>
+      <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-darkGray">Featured Listings</h2>
       <div className="flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-200 pb-2">
         {mockListings.map((listing) => (
           <ListingCell key={listing.id} {...listing} />
