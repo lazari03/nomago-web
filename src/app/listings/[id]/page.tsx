@@ -1,72 +1,56 @@
+"use client";
 import ListingDetail from '../../../components/ListingDetail';
 import { notFound } from 'next/navigation';
-
-const mockListings = [
-  {
-    id: 1,
-    image: "/35.jpg",
-    title: "Modern Apartment in Tirana",
-    subtitle: "2 beds • 1 bath • City Center",
-    description: "A beautiful modern apartment located in the heart of Tirana. Close to all amenities and public transport. Perfect for digital nomads and travelers.",
-    gallery: ["/14.jpg", "/35.jpg"],
-    mapUrl: "https://goo.gl/maps/123456",
-    price: "$120/night",
-  },
-  {
-    id: 2,
-    image: "/14.jpg",
-    title: "Cozy Studio in Durrës",
-    subtitle: "1 bed • Near the beach",
-    description: "Enjoy the sea breeze in this cozy studio just steps from the beach. Ideal for solo travelers or couples.",
-    gallery: ["/35.jpg"],
-    mapUrl: "https://goo.gl/maps/654321",
-    price: "$80/night",
-  },
-  {
-    id: 3,
-    image: "/35.jpg",
-    title: "Coworking Space",
-    subtitle: "Fast WiFi • 24/7 Access",
-    description: "A modern coworking space with all the amenities you need to be productive. High-speed internet, meeting rooms, and a vibrant community.",
-    gallery: ["/14.jpg"],
-    price: "$20/day",
-  },
-  {
-    id: 4,
-    image: "/14.jpg",
-    title: "Mountain Retreat",
-    subtitle: "3 beds • Nature view",
-    description: "Escape to the mountains in this peaceful retreat. Surrounded by nature, perfect for relaxation and remote work.",
-    gallery: ["/35.jpg"],
-    price: "$150/night",
-  },
-  {
-    id: 5,
-    image: "/35.jpg",
-    title: "City Loft",
-    subtitle: "1 bed • Modern amenities",
-    description: "A stylish city loft with all modern amenities. Located in the city center, close to cafes and nightlife.",
-    gallery: ["/14.jpg"],
-    price: "$110/night",
-  },
-  {
-    id: 6,
-    image: "/14.jpg",
-    title: "Beach House",
-    subtitle: "4 beds • Private beach",
-    description: "Spacious beach house with private access to the beach. Great for families or groups of friends.",
-    gallery: ["/35.jpg"],
-    mapUrl: "https://goo.gl/maps/abcdef",
-    price: "$300/night",
-  },
-];
+import { useListingsApiStore } from '../../../store/listingsApiStore';
+import React from 'react';
 
 interface Props {
   params: { id: string };
 }
 
 export default function ListingDetailPage({ params }: Props) {
-  const listing = mockListings.find(l => l.id === Number(params.id));
+  const { listings, fetchListings } = useListingsApiStore();
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (!listings || listings.length === 0) {
+      setLoading(true);
+      fetchListings?.()
+        .catch((e) => setError(e?.message || 'Failed to fetch listing'))
+        .finally(() => setLoading(false));
+    }
+  }, [fetchListings, listings]);
+
+  // Unwrap params if it's a Promise (Next.js future compatibility)
+  // For now, params is always an object, but this is future-proofed for Next.js upgrades
+  function isPromise<T = unknown>(obj: unknown): obj is Promise<T> {
+    return !!obj && typeof (obj as { then?: unknown }).then === 'function';
+  }
+  let routeParams: { id: string } = params;
+  if (isPromise(params)) {
+  routeParams = React.use(params) as { id: string };
+  }
+  const listing = listings.find(l => l.id === Number(routeParams.id));
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="text-red-500">{error}</div>;
   if (!listing) return notFound();
-  return <ListingDetail {...listing} />;
+
+  // Map API listing to ListingDetailProps
+  // Use real image and gallery fields from API (featuredImage and images)
+  const mappedListing = {
+    image: listing.featuredImage && listing.featuredImage.url
+      ? listing.featuredImage.url
+      : "/35.jpg", // fallback if no featuredImage
+    title: listing.title,
+    subtitle: listing.category?.name || "",
+    description: listing.description,
+    gallery: Array.isArray(listing.images)
+      ? listing.images.map((img) => typeof img === 'string' ? img : img.url).filter(Boolean)
+      : [],
+    mapUrl: listing.locationLink || undefined,
+    price: listing.price ? `${listing.price} ALL` : undefined,
+  };
+
+  return <ListingDetail {...mappedListing} />;
 }

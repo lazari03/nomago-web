@@ -1,5 +1,6 @@
 import { ColorTokens } from "../theme/colors";
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 const FeaturesSection = () => (
@@ -58,14 +59,14 @@ const FeaturesSection = () => (
             Evente, guida dhe resurse për jetën nomade
           </li>
         </ul>
-        <a href="#listings" className="inline-block">
+  <Link href="/listings" className="inline-block">
           <button
             className="px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-white"
             style={{ background: ColorTokens.purple }}
           >
             Shiko listimet
           </button>
-        </a>
+  </Link>
       </div>
     </div>
   </section>

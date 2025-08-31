@@ -77,7 +77,13 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ image, title, subtitle, d
               </div>
             )}
             {mapUrl && (
-              <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="inline-block mb-6 px-6 py-2 bg-purple text-white rounded-lg font-semibold shadow hover:bg-darkPurple transition">
+              <a
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mb-6 px-6 py-2 rounded-lg font-semibold shadow transition"
+                style={{ background: ColorTokens.purple, color: ColorTokens.white }}
+              >
                 Show on Map
               </a>
             )}

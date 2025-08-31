@@ -17,7 +17,7 @@ export default function ContactPage() {
               <p className="text-lg text-gray-700 mb-4">Have a question, suggestion, or want to connect? Fill out the form and our team will get back to you soon.</p>
               <ul className="mb-8 text-gray-600 text-base list-disc list-inside">
                 <li>We usually respond within 24 hours.</li>
-                <li>For urgent matters, reach us at <a href="mailto:hello@nomago.com" className="text-purple underline">hello@nomago.com</a>.</li>
+                <li>For urgent matters, reach us at <a href="mailto:info@nomago.com" className="text-purple underline">hello@nomago.com</a>.</li>
                 <li>Our office is based in Tirana, Albania.</li>
               </ul>
             </div>
