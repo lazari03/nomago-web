@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 const Footer = () => (
   <footer
-    className="rounded-3xl mx-4 md:mx-12 mt-20 mb-8 p-8 md:p-12 flex flex-col md:flex-row justify-between items-start gap-8 shadow-sm"
-  style={{ backgroundColor: ColorTokens.purple }}
+    className="rounded-3xl mx-2 md:mx-12 mt-20 mb-8 p-4 md:p-12 flex flex-col md:flex-row justify-between items-start gap-8 shadow-sm max-w-full overflow-x-hidden"
+    style={{ backgroundColor: ColorTokens.purple }}
   >
     <div className="flex-1 min-w-[250px]">
       <div className="flex items-center gap-2 mb-4">

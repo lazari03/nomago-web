@@ -10,7 +10,7 @@ import { ColorTokens } from "../theme/colors";
 
 
 const ListingCell = ({ id, title, description, price, category, locationLink, featuredImage }: Listing) => (
-  <Link href={`/listings/${id}`} className="bg-white rounded-2xl shadow-md overflow-hidden w-72 min-w-[18rem] hover:scale-105 transition-transform flex flex-col">
+  <Link href={`/listings/${id}`} className="bg-white rounded-2xl shadow-md overflow-hidden w-full max-w-xs min-w-0 hover:scale-105 transition-transform flex flex-col">
     {/* Show featured image if available, else fallback */}
     {featuredImage && featuredImage.url ? (
       <Image

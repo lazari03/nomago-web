@@ -13,7 +13,7 @@ export const BlogCell = ({ article }: { article: BlogArticle }) => {
     (c: { type: string; children: { text: string }[] }) => c.type === "paragraph" && c.children && c.children[0]?.text
   )?.children[0]?.text?.slice(0, 120) || "";
   return (
-    <Link href={`/blog/${article.id}`} className="bg-white rounded-2xl shadow-md overflow-hidden w-[32rem] min-w-[22rem] flex-shrink-0 hover:scale-105 transition-transform">
+  <Link href={`/blog/${article.id}`} className="bg-white rounded-2xl shadow-md overflow-hidden w-full max-w-md min-w-0 flex-shrink-0 hover:scale-105 transition-transform">
       <Image
         src={article.thumbnail?.formats?.small?.url || article.thumbnail?.url || "/35.jpg"}
         alt={article.title}

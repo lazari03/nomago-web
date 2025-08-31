@@ -43,22 +43,31 @@ const Navbar = () => {
       </button>
       {/* Mobile menu dropdown */}
       {menuOpen && (
-        <div className="absolute top-16 right-4 bg-white border border-gray-100 rounded-lg shadow-lg p-4 z-50 flex flex-col gap-3 md:hidden animate-fade-in">
-          {NAVBAR_MENU.map(({ label, href, isLink }) => (
-            isLink ? (
-              <Link key={label} href={href} className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>{label}</Link>
-            ) : (
-              <a key={label} href={href} className="hover:text-blue transition-colors" onClick={() => setMenuOpen(false)}>{label}</a>
-            )
-          ))}
-          <a
-            href="#get-app"
-            className="text-white px-4 py-2 rounded-md font-semibold shadow-sm transition text-center mt-2"
-            style={{ background: ColorTokens.purple }}
+  <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-8 md:hidden animate-fade-in shadow-lg overflow-x-hidden w-screen max-w-full">
+          <button
+            className="absolute top-6 right-6 text-3xl text-darkGray focus:outline-none"
+            aria-label="Close menu"
             onClick={() => setMenuOpen(false)}
           >
-            Get the App
-          </a>
+            &times;
+          </button>
+          <nav className="flex flex-col items-center gap-6 w-full">
+            {NAVBAR_MENU.map(({ label, href, isLink }) => (
+              isLink ? (
+                <Link key={label} href={href} className="text-2xl font-semibold text-darkGray hover:text-blue transition-colors w-full text-center py-2" onClick={() => setMenuOpen(false)}>{label}</Link>
+              ) : (
+                <a key={label} href={href} className="text-2xl font-semibold text-darkGray hover:text-blue transition-colors w-full text-center py-2" onClick={() => setMenuOpen(false)}>{label}</a>
+              )
+            ))}
+            <a
+              href="#get-app"
+              className="text-white px-6 py-3 rounded-xl font-semibold shadow-sm transition text-center mt-4 w-4/5"
+              style={{ background: ColorTokens.purple }}
+              onClick={() => setMenuOpen(false)}
+            >
+              Get the App
+            </a>
+          </nav>
         </div>
       )}
     </nav>
