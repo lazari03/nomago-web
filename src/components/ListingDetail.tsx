@@ -1,5 +1,7 @@
 'use client'
 import React, { useState } from "react";
+import Modal from "./Modal";
+import BookingForm from "./BookingForm";
 import Breadcrumb from "./Breadcrumb";
 import { useRouter } from "next/navigation";
 import Navbar from "./Navbar";
@@ -8,6 +10,7 @@ import Image from 'next/image';
 
 
 interface ListingDetailProps {
+  id: number | string;
   image: string;
   title: string;
   subtitle: string;
@@ -15,12 +18,15 @@ interface ListingDetailProps {
   gallery?: string[];
   mapUrl?: string;
   price?: string;
+  category?: { id: number; name: string };
 }
 
 
-const ListingDetail: React.FC<ListingDetailProps> = ({ image, title, subtitle, description, gallery, mapUrl, price }) => {
+const ListingDetail: React.FC<ListingDetailProps> = ({ id, image, title, subtitle, description, gallery, mapUrl, price, category }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIdx, setLightboxIdx] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
   const images = gallery && gallery.length > 0 ? gallery : [];
 
   const openLightbox = (idx: number) => {
@@ -32,6 +38,14 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ image, title, subtitle, d
   const nextImg = () => setLightboxIdx((i) => (i === images.length - 1 ? 0 : i + 1));
 
   const router = useRouter();
+  const handleBookNow = () => {
+    setModalOpen(true);
+    setBookingSuccess(false);
+  };
+  const handleBookingSuccess = () => {
+    setBookingSuccess(true);
+    setTimeout(() => setModalOpen(false), 1200);
+  };
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
@@ -94,9 +108,23 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ image, title, subtitle, d
             <button
               className="px-8 py-3 rounded-xl font-semibold shadow transition"
               style={{ background: ColorTokens.purple, color: ColorTokens.white }}
+              onClick={handleBookNow}
             >
               Book Now
             </button>
+      {/* Booking Modal */}
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        <BookingForm
+          listingId={String(id)}
+          listingName={title}
+          categoryName={category?.name || ''}
+          onSuccess={handleBookingSuccess}
+          onClose={() => setModalOpen(false)}
+        />
+        {bookingSuccess && (
+          <div className="text-green-600 mt-2 text-center">Booking successful!</div>
+        )}
+      </Modal>
           </div>
         </div>
       </div>

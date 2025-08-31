@@ -9,18 +9,11 @@ interface Props {
 }
 
 export default function ListingDetailPage({ params }: Props) {
-  const { listings, fetchListings } = useListingsApiStore();
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState<string | null>(null);
+  const { listings } = useListingsApiStore();
 
-  React.useEffect(() => {
-    if (!listings || listings.length === 0) {
-      setLoading(true);
-      fetchListings?.()
-        .catch((e) => setError(e?.message || 'Failed to fetch listing'))
-        .finally(() => setLoading(false));
-    }
-  }, [fetchListings, listings]);
+
+  // Listings are now fetched globally at app start
+
 
   // Unwrap params if it's a Promise (Next.js future compatibility)
   // For now, params is always an object, but this is future-proofed for Next.js upgrades
@@ -32,8 +25,7 @@ export default function ListingDetailPage({ params }: Props) {
   routeParams = React.use(params) as { id: string };
   }
   const listing = listings.find(l => l.id === Number(routeParams.id));
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div className="text-red-500">{error}</div>;
+  // Loading and error states removed
   if (!listing) return notFound();
 
   // Map API listing to ListingDetailProps
@@ -42,6 +34,7 @@ export default function ListingDetailPage({ params }: Props) {
     image: listing.featuredImage && listing.featuredImage.url
       ? listing.featuredImage.url
       : "/35.jpg", // fallback if no featuredImage
+    id: listing.id,
     title: listing.title,
     subtitle: listing.category?.name || "",
     description: listing.description,
@@ -50,6 +43,7 @@ export default function ListingDetailPage({ params }: Props) {
       : [],
     mapUrl: listing.locationLink || undefined,
     price: listing.price ? `${listing.price} ALL` : undefined,
+    category: listing.category ? { id: listing.category.id, name: listing.category.name } : undefined,
   };
 
   return <ListingDetail {...mappedListing} />;
