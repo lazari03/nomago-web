@@ -1,26 +1,15 @@
 import Navbar from "../../components/Navbar";
-import Link from "next/link";
+import Breadcrumb from "../../components/Breadcrumb";
 import Footer from "../../components/Footer";
 import { ColorTokens } from "../../components/../theme/colors";
 
 export default function ContactPage() {
-  const Breadcrumb = () => (
-    <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-      <ol className="list-none p-0 inline-flex">
-        <li className="flex items-center">
-          <Link href="/" className="hover:underline">Home</Link>
-          <span className="mx-2">/</span>
-        </li>
-        <li className="flex items-center text-darkGray font-semibold">Contact</li>
-      </ol>
-    </nav>
-  );
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
       <main className="flex-1 pt-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <Breadcrumb />
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
           <div className="flex flex-col md:flex-row gap-10 items-start">
             {/* Left: Text */}
             <div className="flex-1">

@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from "react";
+import Breadcrumb from "./Breadcrumb";
 import { useRouter } from "next/navigation";
 import Navbar from "./Navbar";
 import { ColorTokens } from "../theme/colors";
@@ -35,6 +36,13 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ image, title, subtitle, d
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
       <div className="flex-1 max-w-3xl mx-auto py-10 px-4 w-full">
+        <div className="mb-4">
+          <Breadcrumb items={[
+            { label: "Home", href: "/" },
+            { label: "Listings", href: "/listings" },
+            { label: title }
+          ]} />
+        </div>
         <button
           onClick={() => router.back()}
           className="mb-4 flex items-center gap-2 text-purple font-semibold hover:underline hover:text-darkPurple transition"

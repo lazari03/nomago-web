@@ -1,5 +1,7 @@
 
 import { ColorTokens } from '../theme/colors';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => (
   <footer
@@ -8,8 +10,8 @@ const Footer = () => (
   >
     <div className="flex-1 min-w-[250px]">
       <div className="flex items-center gap-2 mb-4">
-        <div className="w-8 h-8 rounded-full bg-purple flex items-center justify-center text-white font-bold text-lg">F</div>
-  <span className="font-bold text-2xl" style={{ color: ColorTokens.white }}>Nomago</span>
+        <Image src="/small-logo.png" alt="Nomago Logo" width={32} height={32} className="w-8 h-8 object-cover" priority />
+        <span className="font-bold text-2xl" style={{ color: ColorTokens.white }}>Nomago</span>
       </div>
   <p className="text-base mb-6 max-w-xs" style={{ color: ColorTokens.white }}>
         Nomago është platforma që i ndihmon nomadët digjitalë të gjejnë akomodim, hapësira pune dhe komunitet, kudo që ndodhen. Jetëso lirinë tënde me Nomago.
@@ -25,8 +27,8 @@ const Footer = () => (
       <div>
   <div className="font-bold mb-3" style={{ color: ColorTokens.white }}>Pages</div>
         <ul className="space-y-2">
-          <li><a href="#" className="transition" style={{ color: ColorTokens.white }}>Home</a></li>
-          <li><a href="#" className="hover:underline transition" style={{ color: ColorTokens.white }}>Blog</a></li>
+          <li><Link href="/" className="transition" style={{ color: ColorTokens.white }}>Home</Link></li>
+          <li><a href="/blog" className="hover:underline transition" style={{ color: ColorTokens.white }}>Blog</a></li>
           <li><a href="#" className="transition" style={{ color: ColorTokens.white }}>Waitlist</a></li>
           <li><a href="#" className="transition" style={{ color: ColorTokens.white }}>404</a></li>
         </ul>
@@ -34,8 +36,8 @@ const Footer = () => (
       <div>
   <div className="font-bold mb-3" style={{ color: ColorTokens.white }}>Other Pages</div>
         <ul className="space-y-2">
-          <li><a href="#" className="transition" style={{ color: ColorTokens.white }}>Terms and Conditions</a></li>
-          <li><a href="#" className="transition" style={{ color: ColorTokens.white }}>Privacy Policy</a></li>
+          <li><a href="/terms" className="transition" style={{ color: ColorTokens.white }}>Terms and Conditions</a></li>
+          <li><a href="/privacy" className="transition" style={{ color: ColorTokens.white }}>Privacy Policy</a></li>
         </ul>
       </div>
     </div>

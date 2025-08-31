@@ -24,11 +24,11 @@ const FeaturesSection = () => (
   <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-8 pt-12 md:pt-20 z-10">
       <div className="flex-1 flex justify-center items-center mb-10 md:mb-0">
         <Image
-          src="/logo-body.png"
-          alt="Nomago Logo"
-          width={240}
-          height={240}
-          className="w-60 h-60 object-contain rounded-[12px]"
+          src="/nomad2.jpg"
+          alt="Digital Nomad"
+          width={520}
+          height={400}
+          className="w-[32rem] h-96 object-cover rounded-[20px]"
           priority
         />
       </div>

@@ -1,31 +1,22 @@
 import Navbar from "../../components/Navbar";
-import Link from "next/link";
+import Breadcrumb from "../../components/Breadcrumb";
+import Footer from "../../components/Footer";
 import ListingsSection from "../../components/ListingsSection";
 
-  const Breadcrumb = () => (
-    <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-      <ol className="list-none p-0 inline-flex">
-        <li className="flex items-center">
-          <Link href="/" className="hover:underline">Home</Link>
-          <span className="mx-2">/</span>
-        </li>
-        <li className="flex items-center text-darkGray font-semibold">Listings</li>
-      </ol>
-    </nav>
-  );
 
 export default function ListingsPage() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
-      <main className="min-h-screen bg-white pt-6 px-4">
+      <main className="flex-1 pt-6 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-2">
-            <Breadcrumb />
+          <div className="pt-2 pb-4">
+            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Listings" }]} />
           </div>
           <ListingsSection />
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }

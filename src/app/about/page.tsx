@@ -1,26 +1,15 @@
 import Navbar from "../../components/Navbar";
-import Link from "next/link";
+import Breadcrumb from "../../components/Breadcrumb";
 import Footer from "../../components/Footer";
 import { ColorTokens } from "../../components/../theme/colors";
 
 export default function AboutPage() {
-  const Breadcrumb = () => (
-    <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-      <ol className="list-none p-0 inline-flex">
-        <li className="flex items-center">
-          <Link href="/" className="hover:underline">Home</Link>
-          <span className="mx-2">/</span>
-        </li>
-        <li className="flex items-center text-darkGray font-semibold">About</li>
-      </ol>
-    </nav>
-  );
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
       <main className="flex-1 pt-12 px-4">
         <div className="max-w-3xl mx-auto">
-          <Breadcrumb />
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "About" }]} />
           <h1 className="text-4xl font-extrabold mb-6 text-darkGray">About Nomago</h1>
           <p className="text-lg text-gray-700 mb-4">
             <span className="font-bold text-purple">Nomago</span> is a modern digital platform based in Tirana, Albania, dedicated to empowering digital nomads and remote workers. Our mission is to make it easy for you to discover, book, and enjoy the best accommodations, coworking spaces, and experiences across Albania and beyond.
