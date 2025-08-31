@@ -1,30 +1,46 @@
+"use client";
+
+import React, { useEffect } from "react";
 import Navbar from "../../../components/Navbar";
 import Breadcrumb from "../../../components/Breadcrumb";
 import Footer from "../../../components/Footer";
 import Link from "next/link";
-
 import Image from "next/image";
-// Dummy blog post data for demonstration
-const mockPosts = [
-  {
-    id: 1,
-    title: "Si të fillosh jetën si nomad digjital",
-    content: "Ky është një udhëzues i plotë për të filluar jetën si nomad digjital në Shqipëri dhe më gjerë. Zbulo këshilla, eksperienca dhe burime të dobishme për të bërë kalimin sa më të lehtë.",
-    date: "2025-08-31",
-    image: "/nomad1.jpg",
-  },
-  {
-    id: 2,
-    title: "Top 5 qytete për nomadët digjitalë në Ballkan",
-    content: "Një përmbledhje e qyteteve më të mira për nomadët digjitalë në rajon, me avantazhet dhe sfidat e secilit destinacion.",
-    date: "2025-08-15",
-    image: "/nomad2.jpg",
-  },
-];
+import { useRouter } from "next/navigation";
+import { observer } from "mobx-react-lite";
+import blogStore from "../../../store/blogStore";
 
-export default function BlogDetailPage({ params }: { params: { id: string } }) {
-  const post = mockPosts.find((p) => p.id === Number(params.id));
-  if (!post) return <div className="text-center py-20">Postimi nuk u gjet.</div>;
+
+
+const BlogDetailPage = observer(({ params }: { params: Promise<{ id: string }> }) => {
+  const router = useRouter();
+
+  // Unwrap params using React.use()
+  const { id: idRaw } = React.use(params);
+  const id = Number(idRaw);
+  const [article, setArticle] = React.useState<any>(() => blogStore.getArticleById(id));
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
+  useEffect(() => {
+    if (article) return; // Already loaded from store
+    setLoading(true);
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/${id}?populate=thumbnail`, {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setArticle(data.data);
+        setError(null);
+      })
+      .catch(() => setError("Postimi nuk u gjet."))
+      .finally(() => setLoading(false));
+  }, [id, article]);
+
+  if (loading) return <div className="text-center py-20">Loading...</div>;
+  if (error || !article) return <div className="text-center py-20">{error || "Postimi nuk u gjet."}</div>;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -35,14 +51,14 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
             <Breadcrumb items={[
               { label: "Home", href: "/" },
               { label: "Blog", href: "/blog" },
-              { label: post.title }
+              { label: article.title }
             ]} />
           </div>
           <article className="bg-white rounded-3xl shadow-xl border border-lightGray p-0 mb-8 overflow-hidden">
-            {post.image && (
+            {article.thumbnail?.url && (
               <Image
-                src={post.image}
-                alt={post.title}
+                src={article.thumbnail.formats?.small?.url || article.thumbnail.url}
+                alt={article.title}
                 width={800}
                 height={288}
                 className="w-full h-72 object-cover"
@@ -50,9 +66,17 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
               />
             )}
             <div className="p-8">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-darkGray mb-2">{post.title}</h1>
-              <div className="text-sm text-gray-500 mb-6">{post.date}</div>
-              <div className="text-base text-gray-700 leading-relaxed mb-6">{post.content}</div>
+              <h1 className="text-3xl md:text-4xl font-extrabold text-darkGray mb-2">{article.title}</h1>
+              <div className="text-sm text-gray-500 mb-6">{new Date(article.publishedAt).toLocaleDateString()}</div>
+              <div className="text-base text-gray-700 leading-relaxed mb-6">
+                {Array.isArray(article.content)
+                  ? article.content.map((block: any, idx: number) =>
+                      block.type === "paragraph" ? (
+                        <p key={idx} className="mb-4">{block.children?.map((c: any, i: number) => c.text)}</p>
+                      ) : null
+                    )
+                  : null}
+              </div>
               <Link href="/blog" className="text-purple font-semibold hover:underline">&larr; Kthehu te blogu</Link>
             </div>
           </article>
@@ -61,4 +85,6 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
       <Footer />
     </div>
   );
-}
+});
+
+export default BlogDetailPage;
