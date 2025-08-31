@@ -7,14 +7,10 @@ import { observer } from "mobx-react-lite";
 import blogStore, { BlogArticle } from "../store/blogStore";
 
 
-interface BlogCellProps {
-  article: BlogArticle;
-}
-
-export const BlogCell = ({ article }: BlogCellProps) => {
+export const BlogCell = ({ article }: { article: BlogArticle }) => {
   // Use the first paragraph as excerpt
   const excerpt = article.content?.find(
-    (c) => c.type === "paragraph" && c.children && c.children[0]?.text
+    (c: { type: string; children: { text: string }[] }) => c.type === "paragraph" && c.children && c.children[0]?.text
   )?.children[0]?.text?.slice(0, 120) || "";
   return (
     <Link href={`/blog/${article.id}`} className="bg-white rounded-2xl shadow-md overflow-hidden w-[32rem] min-w-[22rem] flex-shrink-0 hover:scale-105 transition-transform">
@@ -42,12 +38,12 @@ const BlogSection = observer(() => {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs?populate=thumbnail`, {
           headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
           }
         });
         const data = await res.json();
         blogStore.setArticles(data.data || []);
-      } catch (e) {
+      } catch {
         blogStore.setError("Failed to load blog articles");
       } finally {
         blogStore.setLoading(false);

@@ -1,35 +1,59 @@
 import { makeAutoObservable } from "mobx";
 
+export interface BlogContentBlock {
+  type: string;
+  children: { text: string; type: string }[];
+}
+
+export interface BlogThumbnailFormat {
+  ext: string;
+  url: string;
+  hash: string;
+  mime: string;
+  name: string;
+  path: string | null;
+  size: number;
+  width: number;
+  height: number;
+  sizeInBytes: number;
+}
+
+export interface BlogThumbnail {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText: string | null;
+  caption: string | null;
+  width: number;
+  height: number;
+  formats: {
+    small?: BlogThumbnailFormat;
+    thumbnail?: BlogThumbnailFormat;
+    [key: string]: BlogThumbnailFormat | undefined;
+  };
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: string | null;
+  provider: string;
+  provider_metadata: Record<string, unknown> | null;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
 export interface BlogArticle {
   id: number;
   documentId: string;
   title: string;
-  content: any[];
+  content: BlogContentBlock[];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   isFeatured: boolean | null;
-  thumbnail: {
-    id: number;
-    documentId: string;
-    name: string;
-    alternativeText: string | null;
-    caption: string | null;
-    width: number;
-    height: number;
-    formats: any;
-    hash: string;
-    ext: string;
-    mime: string;
-    size: number;
-    url: string;
-    previewUrl: string | null;
-    provider: string;
-    provider_metadata: any;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-  };
+  thumbnail: BlogThumbnail;
 }
 
 class BlogStore {

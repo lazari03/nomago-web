@@ -6,19 +6,20 @@ import Breadcrumb from "../../../components/Breadcrumb";
 import Footer from "../../../components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { observer } from "mobx-react-lite";
 import blogStore from "../../../store/blogStore";
 
 
 
 const BlogDetailPage = observer(({ params }: { params: Promise<{ id: string }> }) => {
-  const router = useRouter();
-
   // Unwrap params using React.use()
   const { id: idRaw } = React.use(params);
   const id = Number(idRaw);
-  const [article, setArticle] = React.useState<any>(() => blogStore.getArticleById(id));
+  const [article, setArticle] = React.useState<import("../../../store/blogStore").BlogArticle | null>(() => {
+    const found = blogStore.getArticleById(id);
+    return found ?? null;
+  });
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -32,7 +33,7 @@ const BlogDetailPage = observer(({ params }: { params: Promise<{ id: string }> }
     })
       .then((res) => res.json())
       .then((data) => {
-        setArticle(data.data);
+        setArticle(data.data as import("../../../store/blogStore").BlogArticle);
         setError(null);
       })
       .catch(() => setError("Postimi nuk u gjet."))
@@ -70,9 +71,9 @@ const BlogDetailPage = observer(({ params }: { params: Promise<{ id: string }> }
               <div className="text-sm text-gray-500 mb-6">{new Date(article.publishedAt).toLocaleDateString()}</div>
               <div className="text-base text-gray-700 leading-relaxed mb-6">
                 {Array.isArray(article.content)
-                  ? article.content.map((block: any, idx: number) =>
+                  ? article.content.map((block, idx) =>
                       block.type === "paragraph" ? (
-                        <p key={idx} className="mb-4">{block.children?.map((c: any, i: number) => c.text)}</p>
+                        <p key={idx} className="mb-4">{block.children?.map((c) => c.text)}</p>
                       ) : null
                     )
                   : null}
