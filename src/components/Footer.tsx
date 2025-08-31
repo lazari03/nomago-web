@@ -28,7 +28,7 @@ const Footer = () => (
   <div className="font-bold mb-3" style={{ color: ColorTokens.white }}>Pages</div>
         <ul className="space-y-2">
           <li><Link href="/" className="transition" style={{ color: ColorTokens.white }}>Home</Link></li>
-          <li><a href="/blog" className="hover:underline transition" style={{ color: ColorTokens.white }}>Blog</a></li>
+          <li><Link href="/blog" className="hover:underline transition" style={{ color: ColorTokens.white }}>Blog</Link></li>
           <li><a href="#" className="transition" style={{ color: ColorTokens.white }}>Waitlist</a></li>
           <li><a href="#" className="transition" style={{ color: ColorTokens.white }}>404</a></li>
         </ul>
