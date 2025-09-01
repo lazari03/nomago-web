@@ -49,7 +49,7 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ id, image, title, subtitl
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-  <div className="flex-1 max-w-3xl mx-auto py-10 px-4 w-full max-w-full overflow-x-hidden">
+      <div className="flex-1 max-w-3xl mx-auto py-10 px-4 w-full">
         <div className="mb-4">
           <Breadcrumb items={[
             { label: "Home", href: "/" },
