@@ -1,5 +1,6 @@
 
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ListingsProvider from "./ListingsProvider";
@@ -29,15 +30,18 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0JCK6XGLWN"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-0JCK6XGLWN"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-0JCK6XGLWN');
-          `
-        }} />
+          `}
+        </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

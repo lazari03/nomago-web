@@ -1,9 +1,46 @@
+"use client";
 import Navbar from "../../components/Navbar";
 import Breadcrumb from "../../components/Breadcrumb";
 import Footer from "../../components/Footer";
 import { ColorTokens } from "../../components/../theme/colors";
 
+import React, { useState } from "react";
+
 export default function ContactPage() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess(null);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSuccess("Your message has been sent! We'll get back to you soon.");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setError(data.error || "Something went wrong. Please try again later.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
@@ -22,24 +59,26 @@ export default function ContactPage() {
               </ul>
             </div>
             {/* Right: Form */}
-            <form className="flex-1 bg-purple/10 rounded-2xl p-8 shadow-lg flex flex-col gap-5">
+            <form className="flex-1 bg-purple/10 rounded-2xl p-8 shadow-lg flex flex-col gap-5" onSubmit={handleSubmit}>
               <div className="flex gap-4">
                 <div className="flex-1">
                   <label htmlFor="name" className="block text-sm font-semibold text-purple mb-1">Name</label>
-                  <input id="name" name="name" type="text" required placeholder="Your name" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple/30 outline-none bg-white text-darkGray transition" />
+                  <input id="name" name="name" type="text" required placeholder="Your name" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple/30 outline-none bg-white text-darkGray transition" value={form.name} onChange={handleChange} />
                 </div>
                 <div className="flex-1">
                   <label htmlFor="email" className="block text-sm font-semibold text-purple mb-1">Email</label>
-                  <input id="email" name="email" type="email" required placeholder="you@email.com" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple/30 outline-none bg-white text-darkGray transition" />
+                  <input id="email" name="email" type="email" required placeholder="you@email.com" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple/30 outline-none bg-white text-darkGray transition" value={form.email} onChange={handleChange} />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-purple mb-1">Message</label>
-                <textarea id="message" name="message" rows={5} required placeholder="How can we help you?" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple/30 outline-none bg-white text-darkGray transition resize-none" />
+                <textarea id="message" name="message" rows={5} required placeholder="How can we help you?" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple/30 outline-none bg-white text-darkGray transition resize-none" value={form.message} onChange={handleChange} />
               </div>
-              <button type="submit" className="mt-2 bg-purple text-white font-semibold rounded-lg px-8 py-3 shadow-lg hover:bg-purple/90 transition text-base" style={{ background: ColorTokens.purple }}>
-                Send Message
+              <button type="submit" className="mt-2 bg-purple text-white font-semibold rounded-lg px-8 py-3 shadow-lg hover:bg-purple/90 transition text-base" style={{ background: ColorTokens.purple }} disabled={loading}>
+                {loading ? "Sending..." : "Send Message"}
               </button>
+              {success && <p className="text-green-600 mt-2">{success}</p>}
+              {error && <p className="text-red-600 mt-2">{error}</p>}
             </form>
           </div>
           {/* Extra info below row */}
