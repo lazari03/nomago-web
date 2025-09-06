@@ -11,16 +11,16 @@ export async function POST(req: NextRequest) {
       port: 587,
       secure: false,
       auth: {
-        user: '94cd4c001@smtp-brevo.com',
-        pass: 'dxUtzphADHKZSkGc',
+        user: process.env.BREVO_USER,
+        pass: process.env.BREVO_PASS,
       },
     });
 
     // Email options
     const mailOptions = {
-      from: '94cd4c001@smtp-brevo.com', // Your Brevo sender
-      to: 'administation@nomago.al', // Change to your destination email
-      subject: `Contact Form Submission from ${name}`,
+      from: process.env.BREVO_USER,
+      to: 'administation@nomago.al',
+      subject: `Contact form submission from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
 
