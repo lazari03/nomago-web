@@ -8,20 +8,7 @@ const FeaturesSection = () => (
     className="relative w-full bg-white overflow-hidden pt-0 pb-12"
     style={{ marginTop: 0 }}
   >
-    {/* Flipped SVG background at the top */}
-    <div className="absolute top-0 left-0 right-0 min-w-full h-[140px] md:h-[220px] pointer-events-none z-0 overflow-hidden">
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 1440 220"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full block"
-        style={{ display: 'block' }}
-      >
-  <path d="M0 160C360 0 1080 320 1440 160V0H0V160Z" fill={ColorTokens.purple} fillOpacity="0.12"/>
-      </svg>
-    </div>
+  
   <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-8 pt-12 md:pt-20 z-10">
       <div className="flex-1 flex justify-center items-center mb-10 md:mb-0">
         <Image
