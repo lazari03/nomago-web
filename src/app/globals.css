@@ -21,6 +21,10 @@
   animation: fadein 1.2s ease-in forwards;
 }
 
+
+html, body {
+  overflow-x: hidden;
+}
 body {
   @apply bg-white text-black font-sans;
 }
