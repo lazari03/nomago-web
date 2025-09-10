@@ -115,7 +115,7 @@ const ListingDetail: React.FC<ListingDetailProps> = ({ id, image, title, subtitl
       {/* Booking Modal */}
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <BookingForm
-          listingId={String(id)}
+          propertyDocumentId={typeof id === 'string' ? id : ''}
           listingName={title}
           categoryName={category?.name || ''}
           onSuccess={handleBookingSuccess}

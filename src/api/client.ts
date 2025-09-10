@@ -25,7 +25,7 @@ export async function createBooking(payload: BookingPayload): Promise<unknown> {
 			phoneNumber: payload.phoneNumber,
 			startDate: payload.startDate ? new Date(payload.startDate).toISOString() : undefined,
 			endDate: payload.endDate ? new Date(payload.endDate).toISOString() : undefined,
-			listing: Number(payload.listing), // Always send as number
+			   listing: payload.listing, // Send as string (documentId) or number as provided
 		};
 		// Remove undefined fields (Strapi will reject them)
 		Object.keys(data).forEach(key => data[key] === undefined && delete data[key]);

@@ -12,6 +12,7 @@ export interface ListingImage {
 
 export interface Listing {
   id: number;
+  propertyDocumentId: string;
   title: string;
   description: string;
   price: number;
@@ -69,6 +70,7 @@ interface StrapiFeaturedImage {
 }
 interface StrapiListing {
   id: number;
+  documentId: string;
   title?: string;
   propertyName?: string;
   description: string;
@@ -133,6 +135,7 @@ function mapListing(listing: StrapiListing): Listing {
 
   return {
     id: listing.id,
+    propertyDocumentId: listing.documentId,
     title: listing.propertyName || listing.title || '',
     description: listing.description,
     price: listing.price ?? 0,
