@@ -40,7 +40,7 @@ const FeaturedSection = () => {
             style={{ scrollBehavior: "smooth" }}
           >
             {featured.map(listing => (
-              <Link key={listing.id} href={`/listings/${listing.id}`} className="min-w-[320px] max-w-[320px] bg-white rounded-2xl shadow-md overflow-hidden border border-lightGray flex-shrink-0 hover:scale-105 transition-transform flex flex-col">
+              <Link key={listing.propertyDocumentId} href={`/listings/${listing.propertyDocumentId}`} className="min-w-[320px] max-w-[320px] bg-white rounded-2xl shadow-md overflow-hidden border border-lightGray flex-shrink-0 hover:scale-105 transition-transform flex flex-col">
                 {listing.featuredImage?.url ? (
                   <Image
                     src={listing.featuredImage.url}
