@@ -27,27 +27,6 @@ export default function AboutPage() {
             <p className="text-gray-700 text-lg">To empower digital nomads and remote workers by providing seamless access to the best places to live, work, and connect in Albania and beyond.</p>
           </div>
 
-          {/* Team Section */}
-          <div
-            className="mb-8 rounded-[12px] p-6"
-            style={{ background: ColorTokens.purple, color: 'white' }}
-          >
-            <h2 className="text-2xl font-bold mb-4">Meet the Team</h2>
-            <div className="flex flex-col sm:flex-row gap-6">
-              <div className="flex flex-col items-center bg-white/10 rounded-lg shadow p-4 w-full sm:w-1/2">
-                <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-white text-3xl font-bold mb-2">A</div>
-                <div className="font-semibold text-lg">Arben Hoxha</div>
-                <div className="text-white/80 text-sm mb-1">Founder & CEO</div>
-                <p className="text-white/90 text-center text-sm">Passionate about remote work, travel, and building communities for the future of work.</p>
-              </div>
-              <div className="flex flex-col items-center bg-white/10 rounded-lg shadow p-4 w-full sm:w-1/2">
-                <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-white text-3xl font-bold mb-2">E</div>
-                <div className="font-semibold text-lg">Elira Dervishi</div>
-                <div className="text-white/80 text-sm mb-1">Community Manager</div>
-                <p className="text-white/90 text-center text-sm">Connecting nomads, organizing events, and making everyone feel at home in Tirana.</p>
-              </div>
-            </div>
-          </div>
 
           {/* Call to Action */}
           <div className="bg-purple/10 rounded-xl p-6 text-center">
